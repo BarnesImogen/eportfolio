@@ -371,6 +371,8 @@ function Hero() {
           animation: "fadeIn 1s 0.4s both",
           position: "relative",
           flexShrink: 0,
+          overflow: "hidden",
+          padding: "1rem",
         }}>
           {/* spinning ring */}
           <div style={{
@@ -380,7 +382,17 @@ function Hero() {
             opacity: 0.4,
             animation: "spin 22s linear infinite",
           }} />
-          <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "clamp(3.5rem, 12vw, 5.5rem)", color: "white", fontStyle: "normal", fontWeight: 700 }}>IB</span>
+          <img 
+            src="/eportfolio/headshot.jpg" 
+            alt="Imogen Barnes" 
+            style={{ 
+              width: "100%", 
+              height: "100%", 
+              borderRadius: "50% 40% 55% 45% / 45% 55% 40% 50%",
+              objectFit: "cover",
+              boxShadow: "inset 0 0 30px rgba(0,0,0,0.1)",
+            }} 
+          />
         </div>
         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "0.5rem", maxWidth: "100%" }}>
           {chips.map((c, i) => (
