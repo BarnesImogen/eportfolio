@@ -671,9 +671,9 @@ function ExtraCard({ title, role, desc }: { title: string; role: string; desc: s
 
 function Contact() {
   const links = [
-    { label: "Email", href: "mailto:Imogenbarnes04@outlook.com", icon: "✉" },
-    { label: "LinkedIn", href: "https://linkedin.com/in/imogen-barnes", icon: "in" },
-    { label: "0428 085 772", href: "tel:0428085772", icon: "☏" },
+    { label: "Email", href: "mailto:Imogenbarnes04@outlook.com", icon: "/eportfolio/email-icon.png" },
+    { label: "LinkedIn", href: "https://linkedin.com/in/imogen-barnes", icon: "/eportfolio/linkedin-icon.png" },
+    { label: "0428 085 772", href: "tel:0428085772", icon: "/eportfolio/phone-icon.png" },
   ];
   return (
     <section id="contact" style={{ background: COLORS.cream, padding: "clamp(3.5rem, 8vw, 7rem) clamp(1.5rem, 5vw, 5rem)", textAlign: "center" }}>
@@ -705,7 +705,7 @@ function ContactLink({ href, label, icon }: { href: string; label: string; icon:
         transition: "all 0.22s",
         display: "flex", alignItems: "center", justifyContent: "center", gap: "0.6rem",
       }}>
-      <span style={{ fontSize: "1rem" }}>{icon}</span> {label}
+      <img src={icon} alt="" style={{ width: "20px", height: "20px", objectFit: "contain" }} /> {label}
     </a>
   );
 }
