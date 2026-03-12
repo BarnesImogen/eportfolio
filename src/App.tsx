@@ -35,6 +35,74 @@ const globalStyles = `
     from { opacity: 0; transform: translateY(32px); }
     to { opacity: 1; transform: translateY(0); }
   }
+  
+  /* Responsive utility classes */
+  .hero-section, .about-grid, .exp-grid, .skills-grid, .edu-grid, .extra-grid {
+    display: grid;
+  }
+  
+  .mobile-menu-btn {
+    display: none !important;
+  }
+  
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  
+  @media (max-width: 768px) {
+    .hero-section { 
+      grid-template-columns: 1fr !important; 
+      min-height: auto !important;
+    }
+    .hero-section > div:first-child {
+      order: 1; /* Text comes first on mobile */
+    }
+    .hero-section > div:last-child {
+      order: 2; /* Image comes second on mobile */
+      padding-top: 1rem !important;
+      padding-bottom: 2rem !important;
+    }
+    .about-stats-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+    .about-grid { grid-template-columns: 1fr !important; }
+    .exp-grid { grid-template-columns: 1fr !important; gap: 1rem !important; }
+    .skills-grid { grid-template-columns: 1fr !important; }
+    .edu-grid { grid-template-columns: 1fr !important; }
+    .extra-grid { grid-template-columns: 1fr !important; }
+    .mobile-menu-btn { display: block !important; }
+    .nav-links { display: none !important; }
+    .floating-chip { 
+      position: static !important;
+      display: inline-block !important;
+      margin: 0.3rem !important;
+      animation: none !important;
+    }
+    .contact-links {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .contact-links a {
+      width: 100% !important;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 2.5rem !important;
+    }
+    h2 {
+      font-size: 1.8rem !important;
+    }
+  }
+  
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .skills-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    .extra-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  }
 `;
 
 // ── Hook: reveal on scroll ──
@@ -155,6 +223,7 @@ const extras = [
 
 function Nav({ active }: { active: string }) {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", handler);
@@ -166,16 +235,34 @@ function Nav({ active }: { active: string }) {
     <nav style={{
       position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
       display: "flex", alignItems: "center", justifyContent: "space-between",
-      padding: "1.2rem 3rem",
+      padding: "1.2rem clamp(1rem, 5vw, 3rem)",
       background: scrolled ? "rgba(245,240,232,0.9)" : "rgba(245,240,232,0.7)",
       backdropFilter: "blur(14px)",
       borderBottom: `1px solid ${scrolled ? COLORS.border : "transparent"}`,
       transition: "all 0.3s ease",
     }}>
-      <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.82rem", letterSpacing: "0.12em", color: COLORS.rust }}>
+      <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "clamp(0.7rem, 2vw, 0.82rem)", letterSpacing: "0.12em", color: COLORS.rust }}>
         IB / Portfolio
       </span>
-      <ul style={{ display: "flex", gap: "2.5rem", listStyle: "none" }}>
+      {/* Mobile menu button */}
+      <button
+        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        style={{
+          display: "none",
+          background: "none",
+          border: "none",
+          cursor: "pointer",
+          padding: "0.5rem",
+          zIndex: 101,
+        }}
+        className="mobile-menu-btn"
+      >
+        <div style={{ width: 24, height: 2, background: COLORS.ink, marginBottom: 5, transition: "all 0.3s" }} />
+        <div style={{ width: 24, height: 2, background: COLORS.ink, marginBottom: 5, transition: "all 0.3s" }} />
+        <div style={{ width: 24, height: 2, background: COLORS.ink, transition: "all 0.3s" }} />
+      </button>
+      {/* Desktop menu */}
+      <ul className="nav-links" style={{ display: "flex", gap: "2.5rem", listStyle: "none" }}>
         {links.map(link => (
           <li key={link}>
             <a href={`#${link}`} style={{
@@ -190,6 +277,32 @@ function Nav({ active }: { active: string }) {
           </li>
         ))}
       </ul>
+      {/* Mobile menu */}
+      {mobileMenuOpen && (
+        <div style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: "rgba(245,240,232,0.98)",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "2rem",
+          zIndex: 100,
+        }}>
+          {links.map(link => (
+            <a key={link} href={`#${link}`} onClick={() => setMobileMenuOpen(false)} style={{
+              fontFamily: "'DM Mono', monospace", fontSize: "1.2rem",
+              letterSpacing: "0.1em", textTransform: "uppercase",
+              color: active === link ? COLORS.rust : COLORS.warmGrey,
+              textDecoration: "none",
+            }}>{link}</a>
+          ))}
+        </div>
+      )}
     </nav>
   );
 }
@@ -201,12 +314,12 @@ function Hero() {
     { label: ".NET · TypeScript · SQL", top: "56%", right: "2%", delay: "0.8s" },
   ];
   return (
-    <section style={{
-      minHeight: "100vh", display: "grid", gridTemplateColumns: "1fr 1fr",
+    <section className="hero-section" style={{
+      minHeight: "100vh", gridTemplateColumns: "1fr 1fr",
       paddingTop: 70, background: COLORS.cream, overflow: "hidden",
     }}>
       {/* Left */}
-      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "6rem 4rem 6rem 5rem" }}>
+      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 5rem)" }}>
         <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.75rem", letterSpacing: "0.15em", textTransform: "uppercase", color: COLORS.rust, marginBottom: "1.5rem", animation: "fadeUp 0.7s 0.2s both" }}>
           Software Engineer · Sydney, AU
         </div>
@@ -217,8 +330,8 @@ function Hero() {
           UTS Software Engineering student with hands-on experience at ASX, CBA, Macquarie &amp; Cochlear. Passionate about AI and meaningful tech.
         </p>
         <div style={{ marginTop: "2.8rem", animation: "fadeUp 0.7s 0.65s both" }}>
-          <div style={{ display: "inline-block" }}>
-            <div style={{ display: "flex", gap: "1rem", marginBottom: "1rem" }}>
+          <div style={{ display: "inline-block", width: "100%", maxWidth: "500px" }}>
+            <div style={{ display: "flex", gap: "1rem", marginBottom: "1rem", flexWrap: "wrap" }}>
               <BtnFilled href="#experience">View Experience</BtnFilled>
               <BtnOutline href="#contact">Get In Touch</BtnOutline>
             </div>
@@ -249,14 +362,15 @@ function Hero() {
         </div>
       </div>
       {/* Right */}
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", position: "relative", padding: "4rem 3rem" }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", position: "relative", padding: "clamp(2rem, 5vw, 4rem) clamp(1.5rem, 5vw, 3rem)", flexDirection: "column", gap: "1.5rem" }}>
         <div style={{
-          width: 360, height: 360,
+          width: "min(360px, 80vw)", height: "min(360px, 80vw)",
           borderRadius: "50% 40% 55% 45% / 45% 55% 40% 50%",
           background: `linear-gradient(135deg, ${COLORS.rust} 0%, ${COLORS.rustLight} 60%, #f0c9a8 100%)`,
           display: "flex", alignItems: "center", justifyContent: "center",
           animation: "fadeIn 1s 0.4s both",
           position: "relative",
+          flexShrink: 0,
         }}>
           {/* spinning ring */}
           <div style={{
@@ -266,21 +380,23 @@ function Hero() {
             opacity: 0.4,
             animation: "spin 22s linear infinite",
           }} />
-          <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "5.5rem", color: "white", fontStyle: "normal", fontWeight: 700 }}>IB</span>
+          <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "clamp(3.5rem, 12vw, 5.5rem)", color: "white", fontStyle: "normal", fontWeight: 700 }}>IB</span>
         </div>
-        {chips.map((c, i) => (
-          <div key={i} style={{
-            position: "absolute", ...c,
-            background: COLORS.cardBg,
-            border: `1px solid ${COLORS.border}`,
-            padding: "0.6rem 1rem",
-            fontFamily: "'DM Mono', monospace",
-            fontSize: "0.68rem",
-            letterSpacing: "0.07em",
-            color: COLORS.ink,
-            animation: `float 4s ${c.delay} ease-in-out infinite`,
-          }}>{c.label}</div>
-        ))}
+        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "0.5rem", maxWidth: "100%" }}>
+          {chips.map((c, i) => (
+            <div key={i} className="floating-chip" style={{
+              position: "absolute", ...c,
+              background: COLORS.cardBg,
+              border: `1px solid ${COLORS.border}`,
+              padding: "0.6rem 1rem",
+              fontFamily: "'DM Mono', monospace",
+              fontSize: "0.68rem",
+              letterSpacing: "0.07em",
+              color: COLORS.ink,
+              animation: `float 4s ${c.delay} ease-in-out infinite`,
+            }}>{c.label}</div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -298,6 +414,9 @@ function BtnFilled({ href, children }: { href: string; children: React.ReactNode
       border: `1.5px solid ${hov ? COLORS.ink : COLORS.rust}`,
       transition: "all 0.22s",
       display: "inline-block",
+      textAlign: "center",
+      flex: "1 1 auto",
+      whiteSpace: "nowrap",
     }} onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}>{children}</a>
   );
 }
@@ -313,12 +432,15 @@ function BtnOutline({ href, children }: { href: string; children: React.ReactNod
       border: `1.5px solid ${COLORS.ink}`,
       transition: "all 0.22s",
       display: "inline-block",
+      textAlign: "center",
+      flex: "1 1 auto",
+      whiteSpace: "nowrap",
     }} onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}>{children}</a>
   );
 }
 
 function SectionLabel({ n, text }: { n: string; text: string }) {
-  return <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.72rem", letterSpacing: "0.18em", textTransform: "uppercase", color: COLORS.rust, marginBottom: "0.7rem" }}>{n} / {text}</div>;
+  return <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.72rem", fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: COLORS.rust, marginBottom: "0.7rem" }}>{n} / {text}</div>;
 }
 function SectionTitle({ children, light }: { children: React.ReactNode; light?: boolean }) {
   return <h2 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "clamp(1.9rem,3.2vw,2.8rem)", fontWeight: 700, lineHeight: 1.1, color: light ? COLORS.cream : COLORS.ink, marginBottom: "3rem" }}>{children}</h2>;
@@ -332,10 +454,10 @@ function About() {
     { num: "4", label: "Top-tier Companies" },
   ];
   return (
-    <section id="about" style={{ background: COLORS.ink, padding: "6rem 5rem" , }}>
+    <section id="about" style={{ background: COLORS.ink, padding: "clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 5rem)" , }}>
       <SectionLabel n="01" text="About" />
       <SectionTitle light>Building things that have an impact.</SectionTitle>
-      <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: "5rem", alignItems: "start" }}>
+      <div className="about-grid" style={{ gridTemplateColumns: "1.2fr 1fr", gap: "clamp(2rem, 5vw, 5rem)", alignItems: "start" }}>
         <Reveal>
           <div>
             {[
@@ -348,7 +470,7 @@ function About() {
           </div>
         </Reveal>
         <Reveal delay={0.15}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.2rem"}}>
+          <div className="about-stats-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1.2rem"}}>
             {stats.map(s => (
               <div key={s.label} style={{ border: "1px solid rgba(255,255,255,0.1)", padding: "1.5rem", background: "rgba(255,255,255,0.04)" }}>
                 <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "2.6rem", fontWeight: 700, color: COLORS.rustLight, lineHeight: 1, }}>{s.num}</div>
@@ -365,7 +487,7 @@ function About() {
 function Experience() {
   const [hovered, setHovered] = useState<number | null>(null);
   return (
-    <section id="experience" style={{ background: COLORS.cream, padding: "6rem 5rem" }}>
+    <section id="experience" style={{ background: COLORS.cream, padding: "clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 5rem)" }}>
       <SectionLabel n="02" text="Experience" />
       <SectionTitle>Where I've worked.</SectionTitle>
       <div>
@@ -374,8 +496,9 @@ function Experience() {
             <div
               onMouseEnter={() => setHovered(i)}
               onMouseLeave={() => setHovered(null)}
+              className="exp-grid"
               style={{
-                display: "grid", gridTemplateColumns: "200px 1fr", gap: "3rem",
+                gridTemplateColumns: "200px 1fr", gap: "clamp(1.5rem, 4vw, 3rem)",
                 padding: "2.5rem 0",
                 borderTop: `1px solid ${COLORS.border}`,
                 borderBottom: i === experience.length - 1 ? `1px solid ${COLORS.border}` : "none",
@@ -409,11 +532,11 @@ function Experience() {
 function Skills() {
   const [hovTag, setHovTag] = useState<string | null>(null);
   return (
-    <section id="skills" style={{ background: COLORS.cardBg, padding: "6rem 5rem", borderTop: `1px solid ${COLORS.border}`, borderBottom: `1px solid ${COLORS.border}` }}>
+    <section id="skills" style={{ background: COLORS.cardBg, padding: "clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 5rem)", borderTop: `1px solid ${COLORS.border}`, borderBottom: `1px solid ${COLORS.border}` }}>
       <SectionLabel n="03" text="Skills" />
       <SectionTitle>What I work with.</SectionTitle>
       <Reveal>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "2.5rem" }}>
+        <div className="skills-grid" style={{ gridTemplateColumns: "repeat(3, 1fr)", gap: "2.5rem" }}>
           {Object.entries(skills).map(([group, tags]) => (
             <div key={group}>
               <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: COLORS.rust, marginBottom: "1rem", paddingBottom: "0.5rem", borderBottom: `1px solid ${COLORS.border}` }}>
@@ -456,6 +579,7 @@ function Education() {
         "Women in Engineering and IT Co-operative Scholarship recipient",
         "High Distinction Weighted Average Mark (WAM)",
         "Global exchange at Bath Spa University, UK (Sep 2024 – Jan 2025)",
+        "Deans List Award Recipient, 2025"
       ],
     },
     {
@@ -469,10 +593,10 @@ function Education() {
     },
   ];
   return (
-    <section id="education" style={{ background: COLORS.cream, padding: "6rem 5rem" }}>
+    <section id="education" style={{ background: COLORS.cream, padding: "clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 5rem)" }}>
       <SectionLabel n="04" text="Education" />
       <SectionTitle>Where I've studied.</SectionTitle>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem" }}>
+      <div className="edu-grid" style={{ gridTemplateColumns: "1fr 1fr", gap: "2rem" }}>
         {edu.map((e, i) => (
           <Reveal key={i} delay={i * 0.12}>
             <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.border}`, padding: "2rem", position: "relative", overflow: "hidden" }}>
@@ -498,10 +622,10 @@ function Education() {
 
 function Extra() {
   return (
-    <section id="extra" style={{ background: COLORS.ink, padding: "6rem 5rem" }}>
+    <section id="extra" style={{ background: COLORS.ink, padding: "clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 5rem)" }}>
       <SectionLabel n="05" text="Beyond Work" />
       <SectionTitle light>Leadership &amp; community.</SectionTitle>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem" }}>
+      <div className="extra-grid" style={{ gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem" }}>
         {extras.map((e, i) => (
           <Reveal key={i} delay={i * 0.1}>
             <ExtraCard {...e} />
@@ -540,14 +664,14 @@ function Contact() {
     { label: "0428 085 772", href: "tel:0428085772", icon: "☏" },
   ];
   return (
-    <section id="contact" style={{ background: COLORS.cream, padding: "7rem 5rem", textAlign: "center" }}>
+    <section id="contact" style={{ background: COLORS.cream, padding: "clamp(3.5rem, 8vw, 7rem) clamp(1.5rem, 5vw, 5rem)", textAlign: "center" }}>
       <SectionLabel n="06" text="Contact" />
       <SectionTitle>Let's connect.</SectionTitle>
       <p style={{ color: COLORS.warmGrey, fontSize: "1rem", marginBottom: "3rem", maxWidth: "44ch", margin: "0 auto 3rem" }}>
         Open to graduate roles, collaborations, and interesting problems. Feel free to reach out.
       </p>
       <Reveal>
-        <div style={{ display: "flex", justifyContent: "center", gap: "1.5rem", flexWrap: "wrap" }}>
+        <div className="contact-links" style={{ display: "flex", justifyContent: "center", gap: "1.5rem", flexWrap: "wrap" }}>
           {links.map(l => <ContactLink key={l.label} {...l} />)}
         </div>
       </Reveal>
@@ -567,7 +691,7 @@ function ContactLink({ href, label, icon }: { href: string; label: string; icon:
         padding: "1rem 2rem",
         border: `1.5px solid ${hov ? COLORS.rust : COLORS.border}`,
         transition: "all 0.22s",
-        display: "flex", alignItems: "center", gap: "0.6rem",
+        display: "flex", alignItems: "center", justifyContent: "center", gap: "0.6rem",
       }}>
       <span style={{ fontSize: "1rem" }}>{icon}</span> {label}
     </a>
