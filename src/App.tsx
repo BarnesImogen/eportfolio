@@ -335,7 +335,7 @@ function Hero() {
               <BtnFilled href="#experience">View Experience</BtnFilled>
               <BtnOutline href="#contact">Get In Touch</BtnOutline>
             </div>
-            <a href="/Imogen_Barnes_CV.pdf" download style={{
+            <a href="/eportfolio/Imogen_Barnes_CV.pdf" download style={{
               display: "block",
               padding: "0.85rem 0",
               fontFamily: "'DM Mono', monospace", 
