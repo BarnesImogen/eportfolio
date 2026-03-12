@@ -705,7 +705,7 @@ function ContactLink({ href, label, icon }: { href: string; label: string; icon:
         transition: "all 0.22s",
         display: "flex", alignItems: "center", justifyContent: "center", gap: "0.6rem",
       }}>
-      <img src={icon} alt="" style={{ width: "20px", height: "20px", objectFit: "contain" }} /> {label}
+      <img src={icon} alt="" style={{ width: "24px", height: "24px", objectFit: "contain", filter: hov ? "brightness(0) saturate(100%) invert(43%) sepia(54%) saturate(1055%) hue-rotate(335deg) brightness(91%) contrast(92%)" : "none" }} /> {label}
     </a>
   );
 }
