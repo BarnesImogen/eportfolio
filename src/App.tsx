@@ -155,6 +155,11 @@ const experience = [
       "Built customer-facing applications in .NET Maui connecting Cochlear users to their hearing devices",
       "Coded against specific global requirements ensuring regional compliance across international markets",
     ],
+    longDesc: "Cochlear was an incredible internship experience, not just for the technical work, but for the genuine sense of impact that came with it. Building software used by people with hearing implants made my work feel very meaningful. \n \n As part of the summer intern cohort, I built customer facing features in .NET MAUI, developing the app that connects Cochlear users directly to their hearing devices. Working against specific global requirements, I ensured regional compliance across international markets, a layer of complexity that pushed me to think beyond just writing functional code. \n \n Beyond the technical work, I collaborated broadly across the Customer Software Department and regularly presented my work to a range of audiences throughout the internship. I also took part in weekly insider sessions with senior leaders across the business, and had the opportunity to attend a Q&A with the CEO, giving me insight into how a global medical device company operates at every level.",
+    images: [
+      "/eportfolio/cochlear1.jpg",
+      "/eportfolio/cochlear2.jpg",
+    ],
   },
   {
     date: "Jan 2025 – Jul 2025",
@@ -165,6 +170,9 @@ const experience = [
       "Developed micro frontend components with a strong focus on accessibility",
       "Used Java to build backend functionality integrated with frontend layers",
     ],
+    link: "https://www.macquarie.com",
+    longDesc: "Add a deeper write-up for your Macquarie internship here. You can include team context, technical achievements, and measurable results.",
+    images: [],
   },
   {
     date: "Jul 2023 – Dec 2023",
@@ -174,6 +182,8 @@ const experience = [
       "Worked with the Model Experimentation team in the Advanced Data Capabilities crew",
       "Authored Terraform scripts to automate deployment of model objects into Snowflake",
     ],
+    longDesc: "Add a deeper write-up for your CBA internship here. You can outline delivery scope, cloud/data work, and what you learned.",
+    images: [],
   },
   {
     date: "Mar 2023 – Jun 2023",
@@ -183,6 +193,8 @@ const experience = [
       "Built and iterated on an internal GUI in ReactJS using Bamboo, Bitbucket, and Git",
       "Shipped interactive pages with download buttons and colour-coded system indicators",
     ],
+    longDesc: "Add a deeper write-up for your ASX junior software engineer role here. You can include ownership areas, shipped features, and collaboration highlights.",
+    images: [],
   },
   {
     date: "Nov 2022 – Feb 2023",
@@ -192,6 +204,8 @@ const experience = [
       "Collaborated across multiple teams to develop cross-functional technical skills",
       "Created GUI for internal systems in ReactJS; maintained systems during active upgrades",
     ],
+    longDesc: "Add a deeper write-up for your ASX internship here. You can include responsibilities, technical stack, and project outcomes.",
+    images: [],
   },
 ];
 
@@ -206,16 +220,28 @@ const extras = [
     title: "Mechsoc",
     role: "Industry Relations & Sponsorships Executive · Oct 2024 – Dec 2025",
     desc: "Coordinated sponsorships with engineering companies. Organised networking, technical and social events for student engagement.",
+    longDesc: "As Industry & Sponsorships Executive, I coordinated sponsorships with leading engineering companies and led the planning and execution of two major industry events that collectively saw over 400 students in attendance. \n \n The first networking night brought together 8 companies and students for an evening of meaningful industry connections. Building on that success, I spearheaded a second Industry Night as the main organiser. This was a collaborative event run with 9 UTS engineering societies, and had 16 companies in attendance. The night became the second largest society event across all UTS societies in 2025. \n  \n Beyond events, I collaborated with Engineers Australia to deliver a resume and LinkedIn upskilling workshop, helping students strengthen their professional profiles and prepare for the job market.",
+    images: [
+      "/eportfolio/mechsoc1.jpg",
+      "/eportfolio/mechsoc2.jpg", 
+      "/eportfolio/mechsoc3.jpg",
+      "/eportfolio/mechsoc4.jpg",
+    ],
   },
   {
     title: "The Big Lift",
     role: "Participant → Crew Member → Operations Director · Jul 2022 – Oct 2024",
     desc: "200+ volunteer hours across 20+ events in NSW, VIC and QLD. Led teams and logistics for community pay-it-forward initiatives.",
+    longDesc: "My journey with The Big Lift spans three years and three roles, growing from participant to crew to executive, a progression that reflects how deeply this organisation has shaped my values around community and giving back. \n \n I first joined The Big Lift as a participant on the signature nine day winter volunteering trip, travelling through regional NSW and Queensland. It was here that I discovered what it means to truly pay it forward, and it left enough of an impression that I kept coming back. \n \n As a Crew Leader, I took on responsibility for coordinating a regional Australian town's visit as part of the nine day trip. I also helped facilitate on and off campus events throughout the year, organised metropolitan service projects, and promoted The Big Lift's mission to the broader UTS student community. \n \n As Operations Director, I work alongside the Executive Team to plan and deliver The Big Lift's full calendar of activities, including the flagship nine day winter trip that takes 80 university students into regional NSW and QLD communities. Beyond the flagship trip, we run on campus events and smaller volunteering trips ranging from a few hours in Sydney to three day regional getaways throughout the year.",
+    images: [
+      "/eportfolio/tbl1.jpg",
+    ],
   },
   {
     title: "College Union Program",
     role: "Pittwater House · Jan 2020 – Nov 2021",
     desc: "Mentored junior students on academics, wellbeing and school life. Planned and ran tailored activities across year groups.",
+    hideReadMore: true,
   },
 ];
 
@@ -327,7 +353,7 @@ function Hero() {
           Imogen<br /><em style={{ color: COLORS.rust, fontStyle: "normal" }}>Barnes</em>
         </h1>
         <p style={{ marginTop: "1.8rem", fontSize: "1.02rem", color: COLORS.warmGrey, maxWidth: "38ch", lineHeight: 1.7, animation: "fadeUp 0.7s 0.5s both" }}>
-          UTS Software Engineering student with hands-on experience at ASX, CBA, Macquarie &amp; Cochlear. Passionate about AI and meaningful tech.
+          Final year UTS Software Engineering student with hands-on experience at ASX, CBA, Macquarie &amp; Cochlear. Passionate about AI and meaningful tech.
         </p>
         <div style={{ marginTop: "2.8rem", animation: "fadeUp 0.7s 0.65s both" }}>
           <div style={{ display: "inline-block", width: "100%", maxWidth: "500px" }}>
@@ -452,7 +478,7 @@ function BtnOutline({ href, children }: { href: string; children: React.ReactNod
 }
 
 function SectionLabel({ n, text }: { n: string; text: string }) {
-  return <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.72rem", fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: COLORS.rust, marginBottom: "0.7rem" }}>{n} / {text}</div>;
+  return <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "clamp(0.9rem,1.2vw,1.05rem)", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: COLORS.rust, marginBottom: "0.7rem" }}>{n} / {text}</div>;
 }
 function SectionTitle({ children, light }: { children: React.ReactNode; light?: boolean }) {
   return <h2 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "clamp(1.9rem,3.2vw,2.8rem)", fontWeight: 700, lineHeight: 1.1, color: light ? COLORS.cream : COLORS.ink, marginBottom: "3rem" }}>{children}</h2>;
@@ -463,7 +489,7 @@ function About() {
     { num: "4", label: "Industry Internships" },
     { num: "HD", label: "WAM at UTS" },
     { num: "200+", label: "Volunteer Hours" },
-    { num: "4", label: "Top-tier Companies" },
+    { num: "2+", label: "Years of Experience in Industry" },
   ];
   return (
     <section id="about" style={{ background: COLORS.ink, padding: "clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 5rem)" , }}>
@@ -498,6 +524,7 @@ function About() {
 
 function Experience() {
   const [hovered, setHovered] = useState<number | null>(null);
+  const [selectedExperience, setSelectedExperience] = useState<(typeof experience)[number] | null>(null);
   return (
     <section id="experience" style={{ background: COLORS.cream, padding: "clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 5rem)" }}>
       <SectionLabel n="02" text="Experience" />
@@ -524,7 +551,7 @@ function Experience() {
               </div>
               <div>
                 <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1.3rem", fontWeight: 700, marginBottom: "0.8rem", lineHeight: 1.3 }}>{e.role}</div>
-                <ul style={{ listStyle: "none" }}>
+                <ul style={{ listStyle: "none", marginBottom: "1rem" }}>
                   {e.bullets.map((b, j) => (
                     <li key={j} style={{ fontSize: "0.9rem", color: COLORS.warmGrey, padding: "0.3rem 0", paddingLeft: "1.3rem", position: "relative" }}>
                       <span style={{ position: "absolute", left: 0, color: COLORS.rust, fontSize: "0.78rem" }}>→</span>
@@ -532,12 +559,219 @@ function Experience() {
                     </li>
                   ))}
                 </ul>
+                {e.company === "Cochlear Limited" && (
+                  <button
+                    onClick={() => setSelectedExperience(e)}
+                    style={{
+                      display: "inline-block",
+                      padding: "0.65rem 1rem",
+                      fontFamily: "'DM Mono', monospace",
+                      fontSize: "0.72rem",
+                      letterSpacing: "0.08em",
+                      textTransform: "uppercase",
+                      border: `1px solid ${COLORS.rust}`,
+                      background: "transparent",
+                      color: COLORS.rust,
+                      cursor: "pointer",
+                      transition: "all 0.2s",
+                    }}
+                    onMouseEnter={(el) => {
+                      el.currentTarget.style.background = "rgba(232,146,106,0.12)";
+                      el.currentTarget.style.borderColor = COLORS.rustLight;
+                      el.currentTarget.style.color = COLORS.rustLight;
+                    }}
+                    onMouseLeave={(el) => {
+                      el.currentTarget.style.background = "transparent";
+                      el.currentTarget.style.borderColor = COLORS.rust;
+                      el.currentTarget.style.color = COLORS.rust;
+                    }}
+                  >
+                    Read More
+                  </button>
+                )}
               </div>
             </div>
           </Reveal>
         ))}
       </div>
+      <ExperienceDetailsModal item={selectedExperience} onClose={() => setSelectedExperience(null)} />
     </section>
+  );
+}
+
+function ExperienceDetailsModal({
+  item,
+  onClose,
+}: {
+  item: (typeof experience)[number] | null;
+  onClose: () => void;
+}) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [autoPlayKey, setAutoPlayKey] = useState(0);
+
+  useEffect(() => {
+    setCurrentIndex(0);
+  }, [item]);
+
+  useEffect(() => {
+    if (!item) {
+      document.body.style.overflow = "";
+      return;
+    }
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [item]);
+
+  useEffect(() => {
+    if (!item) return;
+    const images = item.images || [];
+    if (images.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [item, autoPlayKey]);
+
+  if (!item) return null;
+
+  const images = item.images || [];
+  const hasImages = images.length > 0;
+
+  const goPrev = () => {
+    if (!hasImages) return;
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+    setAutoPlayKey((prev) => prev + 1);
+  };
+
+  const goNext = () => {
+    if (!hasImages) return;
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+    setAutoPlayKey((prev) => prev + 1);
+  };
+
+  return (
+    <div
+      onClick={onClose}
+      style={{
+        position: "fixed",
+        inset: 0,
+        background: "rgba(0,0,0,0.6)",
+        zIndex: 300,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "1.2rem",
+      }}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          width: "min(920px, 100%)",
+          maxHeight: "90vh",
+          overflowY: "auto",
+          background: COLORS.cardBg,
+          border: `1px solid ${COLORS.border}`,
+          padding: "clamp(1rem, 3vw, 2rem)",
+        }}
+      >
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
+          <div>
+            <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1.4rem", fontWeight: 800, color: COLORS.ink }}>{item.company}</div>
+            <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.74rem", letterSpacing: "0.08em", textTransform: "uppercase", color: COLORS.rust, marginTop: "0.25rem" }}>
+              {item.role} · {item.date}
+            </div>
+          </div>
+          <button
+            onClick={onClose}
+            style={{
+              border: `1px solid ${COLORS.border}`,
+              background: "transparent",
+              color: COLORS.ink,
+              fontSize: "1.2rem",
+              width: "2.2rem",
+              height: "2.2rem",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: 0,
+            }}
+            aria-label="Close details"
+          >
+            ×
+          </button>
+        </div>
+
+        <div style={{ marginBottom: "1.2rem" }}>
+          <div
+            style={{
+              position: "relative",
+              width: "100%",
+              height: "min(48vw, 360px)",
+              background: COLORS.cream,
+              border: `1px solid ${COLORS.border}`,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              overflow: "hidden",
+            }}
+          >
+            {hasImages ? (
+              <img
+                src={images[currentIndex]}
+                alt={`${item.company} image ${currentIndex + 1}`}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            ) : (
+              <div style={{ color: COLORS.warmGrey, fontSize: "0.95rem" }}>Add image paths in the experience data to show them here.</div>
+            )}
+          </div>
+
+          {images.length > 1 && (
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "0.75rem" }}>
+              <button
+                onClick={goPrev}
+                style={{
+                  padding: "0.5rem 0.75rem",
+                  border: `1px solid ${COLORS.border}`,
+                  background: "transparent",
+                  cursor: "pointer",
+                  fontFamily: "'DM Mono', monospace",
+                  fontSize: "0.7rem",
+                  textTransform: "uppercase",
+                }}
+              >
+                Prev
+              </button>
+              <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.72rem", color: COLORS.warmGrey }}>
+                {currentIndex + 1} / {images.length}
+              </div>
+              <button
+                onClick={goNext}
+                style={{
+                  padding: "0.5rem 0.75rem",
+                  border: `1px solid ${COLORS.border}`,
+                  background: "transparent",
+                  cursor: "pointer",
+                  fontFamily: "'DM Mono', monospace",
+                  fontSize: "0.7rem",
+                  textTransform: "uppercase",
+                }}
+              >
+                Next
+              </button>
+            </div>
+          )}
+        </div>
+        <div style={{ color: COLORS.warmGrey, fontSize: "1rem", lineHeight: 1.7, whiteSpace: "pre-line" }}>
+          {item.longDesc || "Add a deeper description for this role in the experience data."}
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -633,6 +867,8 @@ function Education() {
 }
 
 function Extra() {
+  const [selectedExtra, setSelectedExtra] = useState<(typeof extras)[number] | null>(null);
+
   return (
     <section id="extra" style={{ background: COLORS.ink, padding: "clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 5rem)" }}>
       <SectionLabel n="05" text="Beyond Work" />
@@ -640,16 +876,18 @@ function Extra() {
       <div className="extra-grid" style={{ gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem" }}>
         {extras.map((e, i) => (
           <Reveal key={i} delay={i * 0.1}>
-            <ExtraCard {...e} />
+            <ExtraCard {...e} onReadMore={() => setSelectedExtra(e)} />
           </Reveal>
         ))}
       </div>
+      <ExtraDetailsModal item={selectedExtra} onClose={() => setSelectedExtra(null)} />
     </section>
   );
 }
 
-function ExtraCard({ title, role, desc }: { title: string; role: string; desc: string }) {
+function ExtraCard({ title, role, desc, onReadMore, hideReadMore }: { title: string; role: string; desc: string; onReadMore: () => void; hideReadMore?: boolean }) {
   const [hov, setHov] = useState(false);
+  const [btnHov, setBtnHov] = useState(false);
   return (
     <div
       onMouseEnter={() => setHov(true)}
@@ -660,11 +898,211 @@ function ExtraCard({ title, role, desc }: { title: string; role: string; desc: s
         background: hov ? "rgba(255,255,255,0.07)" : "rgba(255,255,255,0.03)",
         transition: "background 0.25s",
         height: "100%",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
-      <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1.1rem", fontWeight: 700, color: COLORS.cream, marginBottom: "0.3rem" }}>{title}</div>
-      <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.68rem", letterSpacing: "0.08em", color: COLORS.rustLight, marginBottom: "1rem", textTransform: "uppercase" }}>{role}</div>
-      <div style={{ fontSize: "0.87rem", color: "#7a726a", lineHeight: 1.65 }}>{desc}</div>
+      <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1.1rem", fontWeight: 900, color: COLORS.cream, marginBottom: "0.3rem" }}>{title}</div>
+      <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.82rem", letterSpacing: "0.08em", color: COLORS.rustLight, marginBottom: "1rem", textTransform: "uppercase" }}>{role}</div>
+      <div style={{ fontSize: "1.02rem", color: "#7a726a", lineHeight: 1.65 }}>{desc}</div>
+      {!hideReadMore && <button
+        onClick={onReadMore}
+        onMouseEnter={() => setBtnHov(true)}
+        onMouseLeave={() => setBtnHov(false)}
+        style={{
+          marginTop: "1.5rem",
+          alignSelf: "flex-start",
+          padding: "0.65rem 1rem",
+          fontFamily: "'DM Mono', monospace",
+          fontSize: "0.72rem",
+          letterSpacing: "0.08em",
+          textTransform: "uppercase",
+          border: `1px solid ${btnHov ? COLORS.rustLight : "rgba(255,255,255,0.2)"}`,
+          background: btnHov ? "rgba(232,146,106,0.12)" : "transparent",
+          color: btnHov ? COLORS.rustLight : COLORS.cream,
+          cursor: "pointer",
+          transition: "all 0.2s",
+        }}
+      >
+        Read More
+      </button>}
+    </div>
+  );
+}
+
+function ExtraDetailsModal({
+  item,
+  onClose,
+}: {
+  item: (typeof extras)[number] | null;
+  onClose: () => void;
+}) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [autoPlayKey, setAutoPlayKey] = useState(0);
+
+  useEffect(() => {
+    setCurrentIndex(0);
+  }, [item]);
+
+  useEffect(() => {
+    if (!item) {
+      document.body.style.overflow = "";
+      return;
+    }
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [item]);
+
+  useEffect(() => {
+    if (!item) return;
+    const images = item.images || [];
+    if (images.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [item, autoPlayKey]);
+
+  if (!item) return null;
+
+  const images = item.images || [];
+  const hasImages = images.length > 0;
+
+  const goPrev = () => {
+    if (!hasImages) return;
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+    setAutoPlayKey((prev) => prev + 1);
+  };
+
+  const goNext = () => {
+    if (!hasImages) return;
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+    setAutoPlayKey((prev) => prev + 1);
+  };
+
+  return (
+    <div
+      onClick={onClose}
+      style={{
+        position: "fixed",
+        inset: 0,
+        background: "rgba(0,0,0,0.6)",
+        zIndex: 300,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "1.2rem",
+      }}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          width: "min(920px, 100%)",
+          maxHeight: "90vh",
+          overflowY: "auto",
+          background: COLORS.cardBg,
+          border: `1px solid ${COLORS.border}`,
+          padding: "clamp(1rem, 3vw, 2rem)",
+        }}
+      >
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
+          <div>
+            <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1.4rem", fontWeight: 800, color: COLORS.ink }}>{item.title}</div>
+            <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.74rem", letterSpacing: "0.08em", textTransform: "uppercase", color: COLORS.rust, marginTop: "0.25rem" }}>
+              {item.role}
+            </div>
+          </div>
+          <button
+            onClick={onClose}
+            style={{
+              border: `1px solid ${COLORS.border}`,
+              background: "transparent",
+              color: COLORS.ink,
+              fontSize: "1.2rem",
+              width: "2.2rem",
+              height: "2.2rem",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: 0,
+            }}
+            aria-label="Close details"
+          >
+            ×
+          </button>
+        </div>
+
+        <div style={{ marginBottom: "1.2rem" }}>
+          <div
+            style={{
+              position: "relative",
+              width: "100%",
+              height: "min(48vw, 360px)",
+              background: COLORS.cream,
+              border: `1px solid ${COLORS.border}`,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              overflow: "hidden",
+            }}
+          >
+            {hasImages ? (
+              <img
+                src={images[currentIndex]}
+                alt={`${item.title} image ${currentIndex + 1}`}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            ) : (
+              <div style={{ color: COLORS.warmGrey, fontSize: "0.95rem" }}>Add image paths in the section 5 data to show them here.</div>
+            )}
+          </div>
+
+          {images.length > 1 && (
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "0.75rem" }}>
+              <button
+                onClick={goPrev}
+                style={{
+                  padding: "0.5rem 0.75rem",
+                  border: `1px solid ${COLORS.border}`,
+                  background: "transparent",
+                  cursor: "pointer",
+                  fontFamily: "'DM Mono', monospace",
+                  fontSize: "0.7rem",
+                  textTransform: "uppercase",
+                }}
+              >
+                Prev
+              </button>
+              <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.72rem", color: COLORS.warmGrey }}>
+                {currentIndex + 1} / {images.length}
+              </div>
+              <button
+                onClick={goNext}
+                style={{
+                  padding: "0.5rem 0.75rem",
+                  border: `1px solid ${COLORS.border}`,
+                  background: "transparent",
+                  cursor: "pointer",
+                  fontFamily: "'DM Mono', monospace",
+                  fontSize: "0.7rem",
+                  textTransform: "uppercase",
+                }}
+              >
+                Next
+              </button>
+            </div>
+          )}
+        </div>
+
+        <div style={{ color: COLORS.warmGrey, fontSize: "1rem", lineHeight: 1.7, whiteSpace: "pre-line" }}>
+          {item.longDesc || "Add a deeper description for this role in the section 5 data."}
+        </div>
+      </div>
     </div>
   );
 }
@@ -680,7 +1118,7 @@ function Contact() {
       <SectionLabel n="06" text="Contact" />
       <SectionTitle>Let's connect.</SectionTitle>
       <p style={{ color: COLORS.warmGrey, fontSize: "1rem", marginBottom: "3rem", maxWidth: "44ch", margin: "0 auto 3rem" }}>
-        Open to graduate roles, collaborations, and interesting problems. Feel free to reach out.
+        I'm committed to bringing thoughtful, human centered design to engineering challenges. My future lies in building accessible, scalable solutions that bridge the gap between cutting edge technology and real world impact whether in healthcare, fintech, or emerging fields. I'm eager to contribute to a profession that values both technical excellence and ethical responsibility.
       </p>
       <Reveal>
         <div className="contact-links" style={{ display: "flex", justifyContent: "center", gap: "1.5rem", flexWrap: "wrap" }}>
@@ -738,8 +1176,8 @@ export default function App() {
         <Education />
         <Extra />
         <Contact />
-        <footer style={{ background: COLORS.ink, color: "#3a342e", textAlign: "center", padding: "2rem", fontFamily: "'DM Mono', monospace", fontSize: "0.68rem", letterSpacing: "0.08em" }}>
-          © 2026 Imogen Barnes · Built with React
+        <footer style={{ background: COLORS.ink, color: COLORS.rustLight, textAlign: "center", padding: "2rem", fontFamily: "'DM Mono', monospace", fontSize: "0.82rem", letterSpacing: "0.08em" }}>
+          © 2026 Imogen Barnes
         </footer>
       </div>
     </>
