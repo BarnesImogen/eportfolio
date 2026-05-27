@@ -353,7 +353,7 @@ function Hero() {
           Imogen<br /><em style={{ color: COLORS.rust, fontStyle: "normal" }}>Barnes</em>
         </h1>
         <p style={{ marginTop: "1.8rem", fontSize: "1.02rem", color: COLORS.warmGrey, maxWidth: "38ch", lineHeight: 1.7, animation: "fadeUp 0.7s 0.5s both" }}>
-          Final year UTS Software Engineering student with hands-on experience at ASX, CBA, Macquarie &amp; Cochlear. Passionate about AI and meaningful tech.
+          Software Engineer with hands-on experience at ASX, CBA, Macquarie &amp; Cochlear. Passionate about AI and meaningful tech.
         </p>
         <div style={{ marginTop: "2.8rem", animation: "fadeUp 0.7s 0.65s both" }}>
           <div style={{ display: "inline-block", width: "100%", maxWidth: "500px" }}>
